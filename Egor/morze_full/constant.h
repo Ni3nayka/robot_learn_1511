@@ -1,5 +1,6 @@
-const int spiker = 12;
+const int spiker = 11; // PIN
 
+// size sound
 const int tochka = 100;
 const int tire = 500;
 const int probel = 100;
@@ -7,7 +8,6 @@ const int probel_2 = probel * 2;
 const int sound = 1000;
 
 const int mas_size = 7;
-
 const int azbuka[26][mas_size] = {
   {0,1,2,0,0,0,0}, // A
   {1,0,0,0,2,0,0}, // B
