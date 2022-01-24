@@ -23,6 +23,10 @@ void loop() {
     if (input=='B') motors(-255,-255);
     if (input=='L') motors(-255,255);
     if (input=='R') motors(255,-255);
+    if (input=='G') motors(55,255);
+    if (input=='I') motors(255,55);
+    if (input=='H') motors(-255,-55);
+    if (input=='J') motors(-55,-255);
   }
 }
 

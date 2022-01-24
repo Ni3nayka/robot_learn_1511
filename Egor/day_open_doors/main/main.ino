@@ -10,7 +10,7 @@ iarduino_I2C_Bumper bum(0x0C);
 #include <SoftwareSerial.h>
 SoftwareSerial bluetooth(11, 12); // RX, TX
 
-int mode = 1;
+int mode = 2;
 int speed = 10;
 
 void setup() {
