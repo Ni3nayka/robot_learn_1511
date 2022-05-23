@@ -7,36 +7,63 @@ iarduino_I2C_Motor mot_L(0x0B);
 #include <iarduino_I2C_Bumper.h>
 iarduino_I2C_Bumper bum(0x0C);  
 
+#include <SoftwareSerial.h>
+SoftwareSerial bluetooth(11, 12); // RX, TX
 
+#define TEST bluetooth
 
-
+int X = -1;
+int Y = -1;
+                                                 
 void setup(){       
-    delay(500); 
-    Serial.begin(9600);
-    //Определяем вводы и выводы
-    mot_R.begin();
-    mot_L.begin();
-    bum.begin();
+  delay(500); 
+  Serial.begin(9600);
+  bluetooth.begin(9600);
+  mot_R.begin();
+  mot_L.begin();
+  bum.begin();
 
-    mot_R.setDirection(true);
-    mot_L.setDirection(false);
-    
-    mot_R.setSpeed( 0, MOT_PWM);
-    mot_L.setSpeed( 0, MOT_PWM);
-
-
-    delay(1000);
-    
-   forward();
-   forward();
-   forward();
-   forward();
-   right();
-   forward();
-   forward();
-   delay(2000);
+  mot_R.setDirection(true);
+  mot_L.setDirection(false);
+  
+  mot_R.setSpeed( 0, MOT_PWM);
+  mot_L.setSpeed( 0, MOT_PWM);
+  
 }
 
+void loop(){ 
+  if (TEST.available()) {
+    char t = TEST.read();
+    if      (t=='A') X = 1;
+    else if (t=='B') X = 2;
+    else if (t=='C') X = 3;
+    else if (t=='D') X = 4;
+    
+    else if (t=='1') Y = 1;
+    else if (t=='2') Y = 2;
+    else if (t=='3') Y = 3;
+    else if (t=='4') Y = 4;
+    else if (t=='5') Y = 5;
+  }
+
+  if (X!=-1 && Y!=-1) {
+    Serial.print("X: ");
+    Serial.print(X);
+    Serial.print(" Y: ");
+    Serial.print(Y);
+    Serial.println();
+    forward();
+    forward();
+    for (int i = 1; i<X; i++) forward();
+    if (Y>3) right();
+    else if (Y<3) left();
+    if (Y!=3) {
+      for (int i = 0; i<abs(Y-3); i++) forward();
+    }
+    
+    while(1);
+  }
+}
 void forward() {
   while (test_no_end()) {
     dvigenie();
@@ -82,29 +109,6 @@ void dvigenie(){
   mot_R.setSpeed(70-e, MOT_PWM);
   mot_L.setSpeed(70+e, MOT_PWM);
 }
-
-void loop(){ 
-  /*if (millis()-t>8000) {
-    motor(0,0);
-    while (1) 
-      delay(1000);
-  }
-  if (test_distance()>25) {
-    motor(-20,20);
-  }
-  else {
-    motor(100,100);
-    while (test_coordinata()) {
-      delay(10);
-    }
-    motor(0,0);
-    delay(100);
-    motor(-100,-100);
-    delay(1000);
-    t = millis();
-  }*/
-}
-
 
 void motor(int a, int b) {
   mot_R.setSpeed(a, MOT_PWM);
