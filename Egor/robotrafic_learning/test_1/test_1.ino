@@ -55,6 +55,7 @@ void setup() {
 bool flag = 1;
 int max_speed = 100;
 float old_summ = 0;
+bool obiezd_flag = 0;
 
 
 void loop() {
@@ -70,7 +71,7 @@ void loop() {
     }
   }
 
-  if (summa_dat()<4000) turn_left();
+  if (summa_dat()<4000 && obiezd_flag) turn_left();
   
   PID();
   //Serial.println(summa_dat());
@@ -83,6 +84,7 @@ void turn_left() {
   delay(2000);
   while (summa_dat()>4900);
   bum.setTurnSignal(BUM_TURN_OFF);
+  obiezd_flag = 0;
 }
 
 int summa_dat() {
@@ -101,7 +103,7 @@ void obiezd() {
   bum.setTurnSignal(BUM_TURN_OFF);
   bum.setTurnSignal(BUM_TURN_RIGHT);
   turn(40);
-  delay(3500);
+  delay(4000);
   
   //while (bum.getLineAnalog(7)>1000);
   bum.setTurnSignal(BUM_TURN_OFF);
@@ -110,7 +112,7 @@ void obiezd() {
   //while (bum.getLineAnalog(9)>500 && bum.getLineAnalog(1)>500);
   while (summa_dat()>4900);
   bum.setTurnSignal(BUM_TURN_OFF);
-  
+  obiezd_flag = 1;
 }
 
 void PID() {
