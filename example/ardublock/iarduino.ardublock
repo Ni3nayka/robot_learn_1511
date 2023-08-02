@@ -1,0 +1,346 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <toolbox>toolbox_arduino_all</toolbox>
+  <block type="arduino_setup" id="b):iI+:P?0N1vKG0v/=I" x="-576" y="-176">
+    <statement name="MySetup">
+      <block type="serial_init" id="vBs$)haw*q@B0jt]M2!~">
+        <field name="pin">0</field>
+        <field name="SPEED">9600</field>
+        <next>
+          <block type="serial_write_ln" id="qX_3[ocD=dK)IYgN#TK7">
+            <value name="CONTENT">
+              <shadow type="text" id="Yl9}~:rv|4b|v;#e]R*3">
+                <field name="TEXT">setup motor</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="variables_set_init" id="q[_uQw[:sk3L$.Fq%4HI">
+                <field name="VAR">speed_motor_a</field>
+                <field name="VARIABLE_SETTYPE_TYPE">NUMBER</field>
+                <value name="VALUE">
+                  <block type="math_number" id=";{9.00,A9q6Ld$)!Iw)c">
+                    <field name="NUM">100</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set_init" id="k+`!Nx[={(D5`yY:-iCQ">
+                    <field name="VAR">speed_motor_b</field>
+                    <field name="VARIABLE_SETTYPE_TYPE">NUMBER</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="8o)xRsTi8,|z+{#!CZGy">
+                        <field name="NUM">100</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="arduino_b_code" id="]ea3)~i^LesNgLt@#hK^" collapsed="true">
+                        <field name="text">I2C</field>
+                        <field name="includes">#include &lt;Wire.h&gt;</field>
+                        <field name="variables"></field>
+                        <field name="definitions"></field>
+                        <field name="userFunctions"></field>
+                        <field name="setups"></field>
+                        <field name="code"></field>
+                        <next>
+                          <block type="arduino_b_code" id="UJmrn$hQ%nlI+vGM/YHS" collapsed="true">
+                            <field name="text">Iarduino Motor</field>
+                            <field name="includes">#include &lt;iarduino_I2C_Motor.h&gt;</field>
+                            <field name="variables">iarduino_I2C_Motor iarduino_motor_a(0x0A); iarduino_I2C_Motor iarduino_motor_b(0x0B);</field>
+                            <field name="definitions"></field>
+                            <field name="userFunctions">void runMotor() { iarduino_motor_a.setSpeed(speed_motor_a , MOT_PWM);   iarduino_motor_b.setSpeed(speed_motor_b, MOT_PWM); }</field>
+                            <field name="setups">iarduino_motor_a.begin();iarduino_motor_b.begin();iarduino_motor_a.setDirection(false);iarduino_motor_b.setDirection(true);</field>
+                            <field name="code"></field>
+                            <next>
+                              <block type="serial_write_ln" id="GXBV[0U|uBNsdMqQ)jyB">
+                                <value name="CONTENT">
+                                  <shadow type="text" id="60fttblD2mx3-`i5$WED">
+                                    <field name="TEXT">setup bumper</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="creer_tableau" id="KvI60JLIswDv!Z)Ff8vD">
+                                    <mutation dim="9"></mutation>
+                                    <field name="VAR">bumper_data</field>
+                                    <field name="type">NUMBER</field>
+                                    <field name="dim">9</field>
+                                    <value name="D0">
+                                      <block type="math_number" id="{g6jJM8T)`_#[iENB_OQ">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <value name="D1">
+                                      <block type="math_number" id="v0aI6$d)qGif/A{;,6pu">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <value name="D2">
+                                      <block type="math_number" id="5BM[:rKZJMwctZ6ms{=5">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <value name="D3">
+                                      <block type="math_number" id=";fvtuwUe]Pr`8*-30g0~">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <value name="D4">
+                                      <block type="math_number" id="06v9.VVe{hpN4,yKx2D0">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <value name="D5">
+                                      <block type="math_number" id="LYu9iZD0q,099an%i=RV">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <value name="D6">
+                                      <block type="math_number" id="HJr.#pr@o:|poU`Vi9kV">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <value name="D7">
+                                      <block type="math_number" id="$Fb%@9(xcTSytf]K@$m6">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <value name="D8">
+                                      <block type="math_number" id="p,%PuFO(mEEWx4{WIPv4">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="arduino_b_code" id="|4_+SO!k$rk0Lrj].H|h" collapsed="true">
+                                        <field name="text">Iarduino Bamper</field>
+                                        <field name="includes">#include &lt;iarduino_I2C_Bumper.h&gt;</field>
+                                        <field name="variables">iarduino_I2C_Bumper bum(0x0C);</field>
+                                        <field name="definitions"></field>
+                                        <field name="userFunctions">void getBumper(){for(int i=0;i&lt;9;i++)bumper_data[i]=bum.getLineAnalog(i+1);}</field>
+                                        <field name="setups">bum.begin();</field>
+                                        <field name="code"></field>
+                                        <next>
+                                          <block type="serial_write_ln" id="nQGyy_Ypj8^2L,mWNV28">
+                                            <value name="CONTENT">
+                                              <shadow type="text" id="N%;Z1Cgr90XMPYU?_1yt">
+                                                <field name="TEXT">test motor</field>
+                                              </shadow>
+                                            </value>
+                                            <next>
+                                              <block type="variables_set" id="N7x`mM^rz#5UKnn,45UX">
+                                                <field name="VAR">speed_motor_a</field>
+                                                <value name="VALUE">
+                                                  <block type="math_number" id="AI[A,%nnIQ8fk5BpG(9e">
+                                                    <field name="NUM">100</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="variables_set" id=",t;^3a_{]BDwNA|?!4Wt">
+                                                    <field name="VAR">speed_motor_b</field>
+                                                    <value name="VALUE">
+                                                      <block type="math_number" id="55V$:$84lUa5M+cFDMnH">
+                                                        <field name="NUM">100</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="base_code" id="9Efu]eWvan{Ib:-Z9niq">
+                                                        <field name="TEXT">runMotor();</field>
+                                                        <next>
+                                                          <block type="base_delay" id="KG^EIJA}Bso+P3HD28xM">
+                                                            <field name="unite">s</field>
+                                                            <value name="DELAY_TIME">
+                                                              <shadow type="math_number" id="2a$weut69W95lt+7r;ql">
+                                                                <field name="NUM">2</field>
+                                                              </shadow>
+                                                            </value>
+                                                            <next>
+                                                              <block type="variables_set" id="XMfxOCLw%BY!?]~!Jnys">
+                                                                <field name="VAR">speed_motor_a</field>
+                                                                <value name="VALUE">
+                                                                  <block type="math_number" id="{Mfo-8QV0nuX)qk:-$Lz">
+                                                                    <field name="NUM">100</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="variables_set" id="GdUuPGjEnWd;lkeh}?Q*">
+                                                                    <field name="VAR">speed_motor_b</field>
+                                                                    <value name="VALUE">
+                                                                      <block type="math_number" id="[l8ostBvHW@u!Ozx:1|`">
+                                                                        <field name="NUM">100</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="base_code" id="0Ch.ejp)PmMhA=o.77OU">
+                                                                        <field name="TEXT">runMotor();</field>
+                                                                        <next>
+                                                                          <block type="serial_write_ln" id="qgS_/WtL60lFN3xw$~=3">
+                                                                            <value name="CONTENT">
+                                                                              <shadow type="text" id="uwU2}Cy#[A+b8)u4UXv{">
+                                                                                <field name="TEXT">test bumper</field>
+                                                                              </shadow>
+                                                                            </value>
+                                                                            <next>
+                                                                              <block type="base_code" id="jUu[PAyhmmW:vW.M0c?f">
+                                                                                <field name="TEXT">getBumper();</field>
+                                                                                <next>
+                                                                                  <block type="serial_write_ln" id="/yD7z)camUS|/ax5Vv16">
+                                                                                    <value name="CONTENT">
+                                                                                      <shadow type="text" id="*E%W?fHH-*PhwrF1Dg*#">
+                                                                                        <field name="TEXT">test bumper</field>
+                                                                                      </shadow>
+                                                                                      <block type="array_getIndex" id="Ot!{B!b?*t6]IIUSjqB9">
+                                                                                        <mutation dim="null"></mutation>
+                                                                                        <field name="VAR">bumper_data</field>
+                                                                                        <field name="Number">1</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <next>
+                                                                                      <block type="serial_write_ln" id="=1lBsP3Zoz8]x-cVn$FA">
+                                                                                        <value name="CONTENT">
+                                                                                          <shadow type="text" id="*E%W?fHH-*PhwrF1Dg*#">
+                                                                                            <field name="TEXT">test bumper</field>
+                                                                                          </shadow>
+                                                                                          <block type="array_getIndex" id="u-C7OBl@UYW8EgPs(P`?">
+                                                                                            <mutation dim="null"></mutation>
+                                                                                            <field name="VAR">bumper_data</field>
+                                                                                            <field name="Number">2</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <next>
+                                                                                          <block type="serial_write_ln" id="AV=KP|_*~sE*ZRxSwX=g">
+                                                                                            <value name="CONTENT">
+                                                                                              <shadow type="text" id="*E%W?fHH-*PhwrF1Dg*#">
+                                                                                                <field name="TEXT">test bumper</field>
+                                                                                              </shadow>
+                                                                                              <block type="array_getIndex" id="1Mm;@,=9`9w)IiQkV{rc">
+                                                                                                <mutation dim="null"></mutation>
+                                                                                                <field name="VAR">bumper_data</field>
+                                                                                                <field name="Number">3</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <next>
+                                                                                              <block type="serial_write_ln" id="OKu%;,]2N6hMz`hyMN%-">
+                                                                                                <value name="CONTENT">
+                                                                                                  <shadow type="text" id="*E%W?fHH-*PhwrF1Dg*#">
+                                                                                                    <field name="TEXT">test bumper</field>
+                                                                                                  </shadow>
+                                                                                                  <block type="array_getIndex" id="3CaIq^qH+el@(`-FqFsP">
+                                                                                                    <mutation dim="null"></mutation>
+                                                                                                    <field name="VAR">bumper_data</field>
+                                                                                                    <field name="Number">4</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <next>
+                                                                                                  <block type="serial_write_ln" id="h^6y)w@,!uVRY!@v=qVB">
+                                                                                                    <value name="CONTENT">
+                                                                                                      <shadow type="text" id="*E%W?fHH-*PhwrF1Dg*#">
+                                                                                                        <field name="TEXT">test bumper</field>
+                                                                                                      </shadow>
+                                                                                                      <block type="array_getIndex" id="{PbgQ7QJ}U8Tk:%S%bId">
+                                                                                                        <mutation dim="null"></mutation>
+                                                                                                        <field name="VAR">bumper_data</field>
+                                                                                                        <field name="Number">5</field>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                    <next>
+                                                                                                      <block type="serial_write_ln" id="_~WLri~evA=9wQTt.xpo">
+                                                                                                        <value name="CONTENT">
+                                                                                                          <shadow type="text" id="*E%W?fHH-*PhwrF1Dg*#">
+                                                                                                            <field name="TEXT">test bumper</field>
+                                                                                                          </shadow>
+                                                                                                          <block type="array_getIndex" id="j7ie:Q5z3+}j{#lI,m6y">
+                                                                                                            <mutation dim="null"></mutation>
+                                                                                                            <field name="VAR">bumper_data</field>
+                                                                                                            <field name="Number">6</field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                        <next>
+                                                                                                          <block type="serial_write_ln" id="-{BHa.cqifGwP96`ojin">
+                                                                                                            <value name="CONTENT">
+                                                                                                              <shadow type="text" id="*E%W?fHH-*PhwrF1Dg*#">
+                                                                                                                <field name="TEXT">test bumper</field>
+                                                                                                              </shadow>
+                                                                                                              <block type="array_getIndex" id="{j[:=MwUJ^pg09Y1ngro">
+                                                                                                                <mutation dim="null"></mutation>
+                                                                                                                <field name="VAR">bumper_data</field>
+                                                                                                                <field name="Number">7</field>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                            <next>
+                                                                                                              <block type="serial_write_ln" id="o8WKH;%Z%m|rtD)J9n(o">
+                                                                                                                <value name="CONTENT">
+                                                                                                                  <shadow type="text" id="EMx7(rC,Ww=6U:NO!,]E">
+                                                                                                                    <field name="TEXT">test bumper</field>
+                                                                                                                  </shadow>
+                                                                                                                  <block type="array_getIndex" id="lO!L;5/[~RZ`[w-d[?N%">
+                                                                                                                    <mutation dim="null"></mutation>
+                                                                                                                    <field name="VAR">bumper_data</field>
+                                                                                                                    <field name="Number">8</field>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                                <next>
+                                                                                                                  <block type="serial_write_ln" id="P?v7`f|#5_O{Uae6Lcuj">
+                                                                                                                    <value name="CONTENT">
+                                                                                                                      <shadow type="text" id="EMx7(rC,Ww=6U:NO!,]E">
+                                                                                                                        <field name="TEXT">test bumper</field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="array_getIndex" id="jNjArn-YYeIbkVlg)Xt}">
+                                                                                                                        <mutation dim="null"></mutation>
+                                                                                                                        <field name="VAR">bumper_data</field>
+                                                                                                                        <field name="Number">9</field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </next>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

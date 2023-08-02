@@ -1,0 +1,393 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <toolbox>toolbox_arduino_all</toolbox>
+  <block type="arduino_setup" id="b):iI+:P?0N1vKG0v/=I" x="-576" y="-176">
+    <statement name="MySetup">
+      <block type="variables_set_init" id="C~m=#ltRn5L+dD!sgDw;">
+        <field name="VAR">f</field>
+        <field name="VARIABLE_SETTYPE_TYPE">CHARACTER</field>
+        <comment pinned="false" h="80" w="160">объявление переменной</comment>
+        <value name="VALUE">
+          <block type="math_number" id="Z7bSts5mj8)1XwQY?qW$">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="serial_init" id="vBs$)haw*q@B0jt]M2!~">
+            <field name="pin">0</field>
+            <field name="SPEED">9600</field>
+            <next>
+              <block type="variables_set_init" id="q[_uQw[:sk3L$.Fq%4HI">
+                <field name="VAR">speed_motor_a</field>
+                <field name="VARIABLE_SETTYPE_TYPE">NUMBER</field>
+                <value name="VALUE">
+                  <block type="math_number" id=";{9.00,A9q6Ld$)!Iw)c">
+                    <field name="NUM">100</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set_init" id="k+`!Nx[={(D5`yY:-iCQ">
+                    <field name="VAR">speed_motor_b</field>
+                    <field name="VARIABLE_SETTYPE_TYPE">NUMBER</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="8o)xRsTi8,|z+{#!CZGy">
+                        <field name="NUM">100</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="MyLoop">
+      <block type="controls_if" id="j/09-vy~c/,%VjnY.r.p">
+        <value name="IF0">
+          <block type="logic_compare_log" id="MNe?0Zx:pcwamzYYygQw">
+            <field name="OP">GT</field>
+            <value name="A">
+              <shadow type="math_number" id=";;-9CDLV$+]@0o3@?|l_">
+                <field name="NUM">R</field>
+              </shadow>
+              <block type="serial_available" id="}x71G#T{;tc,~aO_SQ8K"></block>
+            </value>
+            <value name="B">
+              <shadow type="math_number" id="rv=e9|5e?90(sLbP4IMI">
+                <field name="NUM">0</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="uHVU+6rQpi[)wbI!;kL:">
+            <field name="VAR">f</field>
+            <value name="VALUE">
+              <block type="serial_read" id="Sxpi_2uc3hb=mN!$8.L{"></block>
+            </value>
+            <next>
+              <block type="controls_if" id="]bzs.=rwKZ-#8Tw^`Z}}">
+                <mutation elseif="4"></mutation>
+                <value name="IF0">
+                  <block type="logic_compare_log" id="B$EuPI3eP$CEJON|{p/D">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <shadow type="math_number" id="?r?*3H)g*Q9VQ6M35Y_!">
+                        <field name="NUM">R</field>
+                      </shadow>
+                      <block type="variables_get" id="YNUc?_OE#/t!btOa?sin">
+                        <field name="VAR">f</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number" id="$[k/gHmXyW%`CAps~jYu">
+                        <field name="NUM">10</field>
+                      </shadow>
+                      <block type="text_char" id="3PTOt)H$pFExa,IV9U~y">
+                        <field name="TEXT">F</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="motor_autoR" id="p9RE%ZUD(BB;fakp@kn%">
+                    <field name="MOTOR">1</field>
+                    <field name="MOTOR_DIR">1</field>
+                    <value name="PIN_RM1">
+                      <shadow type="math_number" id="Y]or+-d^.#yoXAWwr#uW">
+                        <field name="NUM">12</field>
+                      </shadow>
+                    </value>
+                    <value name="PIN_RM2">
+                      <shadow type="math_number" id="?AypVQes`zM84xF$,LjF">
+                        <field name="NUM">10</field>
+                      </shadow>
+                    </value>
+                    <value name="CONTENT">
+                      <shadow type="math_number" id="(X,_{dyh^6HQeq%y0VL)">
+                        <field name="NUM">255</field>
+                      </shadow>
+                    </value>
+                    <next>
+                      <block type="motor_autoR" id="?C=Hf8c?E}k3.)}k5d@z">
+                        <field name="MOTOR">0</field>
+                        <field name="MOTOR_DIR">1</field>
+                        <value name="PIN_RM1">
+                          <shadow type="math_number" id="cr(0B6J=;]rLk]bCZ.QC">
+                            <field name="NUM">13</field>
+                          </shadow>
+                        </value>
+                        <value name="PIN_RM2">
+                          <shadow type="math_number" id="~`faJ7CM!OB@PA@LiN^Q">
+                            <field name="NUM">11</field>
+                          </shadow>
+                        </value>
+                        <value name="CONTENT">
+                          <shadow type="math_number" id="Ov}Nq0#5kVhaf%}M.59h">
+                            <field name="NUM">255</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <value name="IF1">
+                  <block type="logic_compare_log" id="Sz}NZ)c2JVCAL@|7[D*y">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <shadow type="math_number" id="?r?*3H)g*Q9VQ6M35Y_!">
+                        <field name="NUM">R</field>
+                      </shadow>
+                      <block type="variables_get" id="^]{qM}0.bXJ;ZvCNpLf#">
+                        <field name="VAR">f</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number" id="$[k/gHmXyW%`CAps~jYu">
+                        <field name="NUM">10</field>
+                      </shadow>
+                      <block type="text_char" id="E!S8hu5t!TML;N:,Rakq">
+                        <field name="TEXT">B</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO1">
+                  <block type="motor_autoR" id="Yp/l@Ov8rJ6uIF_@ivz[">
+                    <field name="MOTOR">1</field>
+                    <field name="MOTOR_DIR">0</field>
+                    <value name="PIN_RM1">
+                      <shadow type="math_number" id="ef,Q9q;#h_h#r.(1bAu?">
+                        <field name="NUM">12</field>
+                      </shadow>
+                    </value>
+                    <value name="PIN_RM2">
+                      <shadow type="math_number" id="U#CxmeO}?,M+WCi_kBa+">
+                        <field name="NUM">10</field>
+                      </shadow>
+                    </value>
+                    <value name="CONTENT">
+                      <shadow type="math_number" id="6Q2}6H)qm{E3a_RgpI.m">
+                        <field name="NUM">255</field>
+                      </shadow>
+                    </value>
+                    <next>
+                      <block type="motor_autoR" id="U0[`YUwEsB8?2AWaIFgU">
+                        <field name="MOTOR">0</field>
+                        <field name="MOTOR_DIR">0</field>
+                        <value name="PIN_RM1">
+                          <shadow type="math_number" id=",Mrw*#({:-S#Pu3UEPoH">
+                            <field name="NUM">13</field>
+                          </shadow>
+                        </value>
+                        <value name="PIN_RM2">
+                          <shadow type="math_number" id="Vi5(K%tGFMj|/`%K[t-6">
+                            <field name="NUM">11</field>
+                          </shadow>
+                        </value>
+                        <value name="CONTENT">
+                          <shadow type="math_number" id="fB5m:2NFHk6{(jRgDk+u">
+                            <field name="NUM">255</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <value name="IF2">
+                  <block type="logic_compare_log" id="1g6eo)m?t/b*`#M#Ssq@">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <shadow type="math_number" id="?r?*3H)g*Q9VQ6M35Y_!">
+                        <field name="NUM">R</field>
+                      </shadow>
+                      <block type="variables_get" id=",rceEJ$?zP2f!o7]exX]">
+                        <field name="VAR">f</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number" id="$[k/gHmXyW%`CAps~jYu">
+                        <field name="NUM">10</field>
+                      </shadow>
+                      <block type="text_char" id="gwxZ!Z$MWhM.9REw(g_A">
+                        <field name="TEXT">L</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO2">
+                  <block type="motor_autoR" id="BOgU$he?-Y1)jQ?|`(BG">
+                    <field name="MOTOR">1</field>
+                    <field name="MOTOR_DIR">0</field>
+                    <value name="PIN_RM1">
+                      <shadow type="math_number" id="5tFJ8ZWh(aJ)2;`]459J">
+                        <field name="NUM">12</field>
+                      </shadow>
+                    </value>
+                    <value name="PIN_RM2">
+                      <shadow type="math_number" id="4tcx7B)KzoC,2As]w;~b">
+                        <field name="NUM">10</field>
+                      </shadow>
+                    </value>
+                    <value name="CONTENT">
+                      <shadow type="math_number" id="I:7y2+!eO:QMi5^Pq]c[">
+                        <field name="NUM">255</field>
+                      </shadow>
+                    </value>
+                    <next>
+                      <block type="motor_autoR" id="u[jv/IRXRp9B,_k**W+q">
+                        <field name="MOTOR">0</field>
+                        <field name="MOTOR_DIR">1</field>
+                        <value name="PIN_RM1">
+                          <shadow type="math_number" id="PqoO?}R)l.$Rh!QczZ^P">
+                            <field name="NUM">13</field>
+                          </shadow>
+                        </value>
+                        <value name="PIN_RM2">
+                          <shadow type="math_number" id="}Kz{T^C9]hAY9nnBO~F)">
+                            <field name="NUM">11</field>
+                          </shadow>
+                        </value>
+                        <value name="CONTENT">
+                          <shadow type="math_number" id="}/i(P~X-H5sWI(([3-S(">
+                            <field name="NUM">255</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <value name="IF3">
+                  <block type="logic_compare_log" id="~UiZoN5]a(}u^#-~12N=">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <shadow type="math_number" id="?r?*3H)g*Q9VQ6M35Y_!">
+                        <field name="NUM">R</field>
+                      </shadow>
+                      <block type="variables_get" id="I@Fg?jvPGVPzD%wd}#we">
+                        <field name="VAR">f</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number" id="$[k/gHmXyW%`CAps~jYu">
+                        <field name="NUM">10</field>
+                      </shadow>
+                      <block type="text_char" id="g8H`fGJ~3mJ2zqnAUG}/">
+                        <field name="TEXT">R</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO3">
+                  <block type="motor_autoR" id="po/,Dak`H;y_pG#59(Q.">
+                    <field name="MOTOR">1</field>
+                    <field name="MOTOR_DIR">1</field>
+                    <value name="PIN_RM1">
+                      <shadow type="math_number" id="BVW[Qb@R^7@[oVy0EEd[">
+                        <field name="NUM">12</field>
+                      </shadow>
+                    </value>
+                    <value name="PIN_RM2">
+                      <shadow type="math_number" id="Iu#HkX@;HY;NU(#;_fBO">
+                        <field name="NUM">10</field>
+                      </shadow>
+                    </value>
+                    <value name="CONTENT">
+                      <shadow type="math_number" id="U$?t_X0v;iM.|AJ?k5!d">
+                        <field name="NUM">255</field>
+                      </shadow>
+                    </value>
+                    <next>
+                      <block type="motor_autoR" id="hXhhm]w%N6@e6IhjfbS6">
+                        <field name="MOTOR">0</field>
+                        <field name="MOTOR_DIR">0</field>
+                        <value name="PIN_RM1">
+                          <shadow type="math_number" id="3sm{kbb[uWUnp0-cj(En">
+                            <field name="NUM">13</field>
+                          </shadow>
+                        </value>
+                        <value name="PIN_RM2">
+                          <shadow type="math_number" id="g|U?ia`#[`2-5?]!5~Jn">
+                            <field name="NUM">11</field>
+                          </shadow>
+                        </value>
+                        <value name="CONTENT">
+                          <shadow type="math_number" id="o,)0iD%-~$MQ/S$z#5hl">
+                            <field name="NUM">255</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <value name="IF4">
+                  <block type="logic_compare_log" id="N1E2CU^t|0v7FLu*x6^8">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <shadow type="math_number" id="?r?*3H)g*Q9VQ6M35Y_!">
+                        <field name="NUM">R</field>
+                      </shadow>
+                      <block type="variables_get" id="pmFH+*sc`z[%`eKHiGTr">
+                        <field name="VAR">f</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <shadow type="math_number" id="$[k/gHmXyW%`CAps~jYu">
+                        <field name="NUM">10</field>
+                      </shadow>
+                      <block type="text_char" id="W@I*Y#EpmAOm8~pjv10*">
+                        <field name="TEXT">S</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO4">
+                  <block type="motor_autoR" id=",cY]0]Gc!p;pwoda2,GM">
+                    <field name="MOTOR">1</field>
+                    <field name="MOTOR_DIR">1</field>
+                    <value name="PIN_RM1">
+                      <shadow type="math_number" id="%O(q.I@}HlbYWH%QfjiW">
+                        <field name="NUM">12</field>
+                      </shadow>
+                    </value>
+                    <value name="PIN_RM2">
+                      <shadow type="math_number" id="w9G-$-gMDgJ1!(=1qCe%">
+                        <field name="NUM">10</field>
+                      </shadow>
+                    </value>
+                    <value name="CONTENT">
+                      <shadow type="math_number" id=".pfTMG!fvz}vx[rMi?1#">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                    <next>
+                      <block type="motor_autoR" id="gj#ZZ^ua6|U_GCOZ5m~;">
+                        <field name="MOTOR">0</field>
+                        <field name="MOTOR_DIR">1</field>
+                        <value name="PIN_RM1">
+                          <shadow type="math_number" id="8q5H+A9)LfwUMhK(LE8e">
+                            <field name="NUM">13</field>
+                          </shadow>
+                        </value>
+                        <value name="PIN_RM2">
+                          <shadow type="math_number" id="ofb23(:Kr#l`C(V}3yto">
+                            <field name="NUM">11</field>
+                          </shadow>
+                        </value>
+                        <value name="CONTENT">
+                          <shadow type="math_number" id="]SQRnDK4inJgBB/yeY]8">
+                            <field name="NUM">0</field>
+                          </shadow>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>
