@@ -7,12 +7,11 @@ iarduino_I2C_Motor motor_right(0x0A);
 
 void setup() {
   delay(500);
-  /*motor_left.begin();
+  motor_left.begin();
   motor_right.begin();
   motor_left.setDirection(0);
   motor_right.setDirection(1);
-
-  motor(100,100);
+  /*motor(100,100);
   delay(1000);
   motor(100,-100);
   delay(450);
@@ -32,20 +31,20 @@ void setup() {
   motor(100,-100);
   delay(450);*/
   Serial.begin(9600);
-  int a = summator(1,2);
-  a = a + 1; // a += 1;
-  Serial.println(a);
+//  Serial.println("123\n\n\n123");
 }
 
-int summator(int a, int b) {
-  Serial.println(a+b);
-  return a+b;
+void loop() {
+  if (Serial.available()>0) {
+    char symbol = Serial.read();
+    if (symbol == 'S') motor(0,0);
+    if (symbol == 'F') motor(100,100);
+    if (symbol == 'B') motor(-100,-100);
+    if (symbol == 'R') motor(100,-100);
+    if (symbol == 'L') motor(-100,100);
+  }
+  
 }
-
-
-void loop() {}
-
-
 
 void motor(int left_speed, int right_speed) {
   motor_left.setSpeed(left_speed, MOT_PWM);
