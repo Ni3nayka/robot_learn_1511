@@ -16,6 +16,11 @@ iarduino_I2C_Bumper bum(0x0D);
 long int i = 0;
 int e_old = 0;
 
+bool flag = 1;
+//bool flag = true;
+
+int counter = 0;
+
 void setup() {
   delay(500);
   motor_left.begin();
@@ -27,6 +32,32 @@ void setup() {
 }
 
 void loop() { // белое - 2700  черное - 330
+  if (bum.getLineAnalog(3)>POROG_LINE || bum.getLineAnalog(7)>POROG_LINE) {
+    if (flag==0) {
+      motor(100,100);
+      delay(400);
+    }
+    flag = 1;
+    run_pid();  
+  }
+  else {
+    if (flag==1) {
+      
+      flag = 0;
+      counter++; //counter = counter + 1;
+      if (counter==3) {
+        motor(-100,-100);
+        delay(50);
+        motor(0,0);            
+        delay(1000);
+        while(1);
+      }
+    }
+    motor(100,100);
+  }
+}
+
+void run_pid() {
   int l = bum.getLineAnalog(3);
   int r = bum.getLineAnalog(7);
   int e = l - r;
