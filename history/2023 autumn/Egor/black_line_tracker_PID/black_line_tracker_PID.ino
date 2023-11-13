@@ -9,10 +9,13 @@ iarduino_I2C_Motor motor_right(0x0A);
 iarduino_I2C_Bumper bum(0x0D);
 #define POROG_LINE = 800
 
-#define KP 0.013
-#define KI 0
-#define KD 0
-#define BASIC_SPEED 50
+#define KP 0.022
+#define KI 0.0015
+#define KD 0.001
+#define BASIC_SPEED 100
+
+long int i = 0;
+int e_old = 0;
 
 void setup() {
   delay(500);
@@ -31,8 +34,9 @@ void loop() {
   int r = bum.getLineAnalog(7);
   int e = l - r;
   int p = e;
-  int i = 0; //...
-  int d = 0; //...
+  i = e + i*0.95;
+  int d = e - e_old;
+  e_old = e;
   int pid = p*KP + i*KI + d*KD;
   motor(BASIC_SPEED+pid, BASIC_SPEED-pid);
  // BASIC_SPEED
